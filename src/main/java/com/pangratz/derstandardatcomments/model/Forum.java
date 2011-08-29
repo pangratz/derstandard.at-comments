@@ -7,11 +7,21 @@ import com.google.gson.GsonBuilder;
 
 public class Forum {
 
+	private final String link;
 	private List<ForumEntry> forumEntries;
 	private List<String> paginationLinks;
 
+	public Forum(String link) {
+		super();
+		this.link = link;
+	}
+
 	public List<ForumEntry> getForumEntries() {
 		return forumEntries;
+	}
+
+	public String getLink() {
+		return link;
 	}
 
 	public List<String> getPaginationLinks() {

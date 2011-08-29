@@ -20,7 +20,6 @@ import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
 import org.mozilla.javascript.ScriptableObject;
 
-
 public class ForumFetcher {
 
 	private final Pattern articleIdPattern;
@@ -137,6 +136,7 @@ public class ForumFetcher {
 				Element pagingEl = it.next();
 				if (!pagingEl.hasAttr("class")) {
 					String link = pagingEl.attr("href");
+					link = link.replace("#forumstart", "");
 					paginationLinks.add(BASE_LINK + link);
 				}
 			}
@@ -157,7 +157,7 @@ public class ForumFetcher {
 	protected Forum parseForum(String link, Document doc) {
 		long articleId = parseArticleId(link);
 
-		Forum forum = new Forum();
+		Forum forum = new Forum(link);
 		forum.setForumEntries(extractForumEntries(articleId, doc));
 		forum.setPaginationLinks(extractPaginationLinks(doc));
 
