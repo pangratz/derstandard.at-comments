@@ -263,6 +263,9 @@
 						<type>pom</type>
 					</dependency>
 				</dependencies>
+				<configuration>
+					<serverId>appengine.google.com</serverId>
+				</configuration>
 			</plugin>
 
 			<!-- Upload application to the appspot automatically, during release:perform -->
