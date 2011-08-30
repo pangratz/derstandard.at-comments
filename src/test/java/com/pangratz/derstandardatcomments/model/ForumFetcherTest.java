@@ -52,6 +52,15 @@ public class ForumFetcherTest extends TestCase {
 		System.out.println(duration);
 	}
 
+	public void testLocalFirstPage() throws IOException {
+		URL url = ForumFetcherTest.class.getResource("/test_first_page.html");
+		String html = IOUtils.toString(url.openStream());
+		String link = "http://derstandard.at/1313025313062";
+
+		Forum firstPage = forumFetcher.getForum(link, html);
+		assertEquals(1, firstPage.getPage());
+	}
+
 	public void testLocalGetForum() throws IOException {
 		URL url = ForumFetcherTest.class.getResource("/test_page.html");
 		String html = IOUtils.toString(url.openStream());
@@ -59,6 +68,8 @@ public class ForumFetcherTest extends TestCase {
 
 		Forum forum = forumFetcher.getForum(link, html);
 		assertNotNull(forum);
+
+		assertEquals(1, forum.getPage());
 
 		List<ForumEntry> entries = forum.getForumEntries();
 		assertNotNull(entries);
@@ -104,6 +115,34 @@ public class ForumFetcherTest extends TestCase {
 		assertEquals(0, lastEntryRating.getUnnecessary());
 		DateTime lastEntryDate = new DateTime(2011, 8, 28, 13, 30, 0, DateTimeZone.forID("Europe/Vienna"));
 		assertEquals(lastEntryDate.toDate(), lastEntry.getDate());
+	}
+
+	public void testLocalLastPage() throws IOException {
+		URL url = ForumFetcherTest.class.getResource("/test_last_page.html");
+		String html = IOUtils.toString(url.openStream());
+		String link = "http://derstandard.at/1313025313062?seite=17";
+
+		Forum firstPage = forumFetcher.getForum(link, html);
+		assertEquals(17, firstPage.getPage());
+	}
+
+	public void testNoComments() throws IOException {
+		URL url = ForumFetcherTest.class.getResource("/no_comments.html");
+		String html = IOUtils.toString(url.openStream());
+		String link = "http://derstandard.at/1314652504760";
+		Forum forum = forumFetcher.getForum(link, html);
+		assertNotNull(forum);
+
+		assertEquals("http://derstandard.at/1314652504760", forum.getLink());
+		assertEquals(1, forum.getPage());
+
+		List<ForumEntry> forumEntries = forum.getForumEntries();
+		assertNotNull(forumEntries);
+		assertEquals(0, forumEntries.size());
+
+		List<String> paginationLinks = forum.getPaginationLinks();
+		assertNotNull(paginationLinks);
+		assertEquals(0, paginationLinks.size());
 	}
 
 	public void testRemoteGetForum() throws IOException {

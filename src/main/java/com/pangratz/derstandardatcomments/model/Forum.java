@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 public class Forum {
 
 	private final String link;
+	private int page;
 	private List<ForumEntry> forumEntries;
 	private List<String> paginationLinks;
 
@@ -24,12 +25,20 @@ public class Forum {
 		return link;
 	}
 
+	public int getPage() {
+		return page;
+	}
+
 	public List<String> getPaginationLinks() {
 		return paginationLinks;
 	}
 
 	public void setForumEntries(List<ForumEntry> forumEntries) {
 		this.forumEntries = forumEntries;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
 	}
 
 	public void setPaginationLinks(List<String> paginationLinks) {
