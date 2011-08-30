@@ -9,17 +9,8 @@ $(document).ready(function(){
 	};
 	
 	var fetchForumEntries = function(link) {
-		$.ajax({
-		    type: 'GET',
-		    url: '/forum',
-		    dataType: 'json',
-			data: {
-				url: link
-			},
-		    success: function(data){
-				appendPosts(data);
-			},
-		    async: false
+		$.getJSON('/forum', {url: link}, function(data){
+			appendPosts(data);
 		});
 	};
 	
