@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>DerStandard.At Comments</title>
+	</head>
+	<body>
+		
+		<div>
+			<input type="text" style="width: 600px;" value="http://derstandard.at/1313025408124/Android-Handys-vom-Diskonter-Nokias-Albtraum" id="forumUrl">
+		</div>
+		
+		<div id="posts">	
+		</div>
+		
+		<ul id="forumPostsTemplate" style="display: none;" >
+			{{#forumEntries}}
+				<li>
+					<div style="border: thin solid black;">
+						<div>
+							{{nick}}
+						</div>
+						<div>
+							<b>{{{header}}}</b>
+						</div>
+						<div>
+							{{{posting}}}
+						</div>
+					</div>
+				</li>
+			{{/forumEntries}}			
+		</ul>
+		
+		<script src="js/jquery-1.6.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mustache.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/forum.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
