@@ -2,7 +2,6 @@ package com.pangratz.derstandardatcomments.model;
 
 import java.util.Date;
 
-
 public class ForumEntry {
 
 	private Date date;
@@ -13,6 +12,11 @@ public class ForumEntry {
 	private int postId;
 	private String posting;
 	private Rating rating;
+
+	public ForumEntry() {
+		super();
+		rating = new Rating();
+	}
 
 	public Date getDate() {
 		return date;

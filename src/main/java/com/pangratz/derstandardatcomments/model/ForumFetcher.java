@@ -158,10 +158,17 @@ public class ForumFetcher {
 		long articleId = parseArticleId(link);
 
 		Forum forum = new Forum(link);
+		Element current = doc.select(".pagingDirect > .current").first();
+		int page = 1;
+		if (current != null) {
+			String pageStr = current.text();
+			page = Integer.parseInt(pageStr);
+		}
+		forum.setPage(page);
+
 		forum.setForumEntries(extractForumEntries(articleId, doc));
 		forum.setPaginationLinks(extractPaginationLinks(doc));
 
 		return forum;
 	}
-
 }
