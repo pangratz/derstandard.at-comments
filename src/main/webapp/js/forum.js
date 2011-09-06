@@ -6,6 +6,7 @@ $(document).ready(function(){
 		var template = $('#forumPostsTemplate').html();
 		var html = Mustache.to_html(template, data);
 		$('#posts').append(html);
+		$('#progress').attr('value', data.page);
 	};
 	
 	var fetchForumEntries = function(link) {
@@ -22,7 +23,12 @@ $(document).ready(function(){
 			var paginationLinks = data.paginationLinks;
 			if (paginationLinks) {
 				var x = 0;
-				for(x in data.paginationLinks) {
+				var count = paginationLinks.count;
+				
+				$('#progress').attr('max', count);
+				$('#progress').attr('value', 0);
+				
+				for(x in paginationLinks) {
 					var pageLink = paginationLinks[x];
 					fetchForumEntries(pageLink);
 				}
