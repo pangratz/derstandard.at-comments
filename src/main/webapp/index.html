@@ -2,34 +2,75 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link href="css/twitter-bootstrap/bootstrap-1.2.0.css" rel="stylesheet">
 		<title>DerStandard.At Comments</title>
 	</head>
 	<body>
 		
-		<div>
-			<input type="text" style="width: 600px;" value="http://derstandard.at/1313025408124/Android-Handys-vom-Diskonter-Nokias-Albtraum" id="forumUrl">
+		<div class="topbar">
+			<div class="topbar-inner">
+				<div class="container">
+					<!--
+					<h3><a>DerStandard.at Comments</a></h3>
+					-->
+					<ul class="nav" >
+						<li class="active">
+							<label for="forumUrl">http://derStandard.at/</label>
+							<div class="input">
+								<input id="forumUrl" name="forumUrl" size="30" type="text" />
+							</div>							
+						</li>
+						<li>
+							<div class="input">
+								<progress id="progress" max="6" value="1">16%</progress>
+							</div>
+						</li>
+						<li>
+							<a href="#">rating</a>
+						</li>
+						<li>
+							<a href="#">date</a>
+						</li>
+						<li>
+							<a href="#">nick</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 		
-		<div id="posts">	
-		</div>
-		
-		<ul id="forumPostsTemplate" style="display: none;" >
-			{{#forumEntries}}
-				<li>
-					<div style="border: thin solid black;">
-						<div>
-							{{nick}}
-						</div>
-						<div>
-							<b>{{{header}}}</b>
-						</div>
-						<div>
-							{{{posting}}}
-						</div>
+		<div class="container" style="margin-top: 40px;" >
+			<section id="posts" >
+				<div class="row" style="border: thin solid black;" >
+					<div class="container">
+						{{nick}}
 					</div>
-				</li>
+					<div class="container">
+						{{{header}}}
+					</div>
+					<div class="container">
+						{{{posting}}}
+					</div>
+				</div>
+			</section>			
+		</div>
+		
+		
+		<div id="forumPostsTemplate" style="display: none;" >
+			{{#forumEntries}}
+				<div class="row" style="border: thin solid black;" >
+					<div class="row">
+						<div class="span1 column">{{nick}}</div>
+					</div>
+					<div class="row">
+						{{{header}}}
+					</div>
+					<div class="row">
+						{{{posting}}}
+					</div>
+				</div>
 			{{/forumEntries}}			
-		</ul>
+		</div>
 		
 		<script src="js/jquery-1.6.2.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/mustache.js" type="text/javascript" charset="utf-8"></script>
