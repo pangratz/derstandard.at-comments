@@ -20,6 +20,7 @@ $(document).ready(function(){
 	var fetchForumPosts = function(link){
 		$('#posts').html('');
 		$('#progress').attr('value', 0);
+		$('#progress').attr('max', 1);
 		
 		$.getJSON('/forum', {url: link}, function(data){
 			appendPosts(data);
