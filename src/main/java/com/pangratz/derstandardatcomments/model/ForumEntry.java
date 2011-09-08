@@ -12,6 +12,7 @@ public class ForumEntry {
 	private int postId;
 	private String posting;
 	private Rating rating;
+	private int postingHash;
 
 	public ForumEntry() {
 		super();
@@ -46,6 +47,10 @@ public class ForumEntry {
 		return posting;
 	}
 
+	public int getPostingHash() {
+		return postingHash;
+	}
+
 	public Rating getRating() {
 		return rating;
 	}
@@ -76,6 +81,7 @@ public class ForumEntry {
 
 	public void setPosting(String posting) {
 		this.posting = posting;
+		this.postingHash = this.posting.hashCode();
 	}
 
 	public void setRating(Rating rating) {
